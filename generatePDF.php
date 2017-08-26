@@ -5,6 +5,7 @@ ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
 require('classes/options.php');
+require('classes/cv_header.php');
 
 /*
     use Dompdf\Dompdf;
@@ -23,13 +24,9 @@ require('classes/options.php');
 
 class CV_PDF
 {
-    private $name, $email, $phone_number, $address, $date_of_birth;
+    public $cv_header;
 
     function __construct($cv_headerInformation = null) {
-        $this->name = 'Jim';
-    }
-
-    function theName() {
-        return $this->name;
+        $this->cv_header = new CV_Header();
     }
 }
