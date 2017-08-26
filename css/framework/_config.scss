@@ -1,0 +1,36 @@
+// Grid
+$container-width: 1230px;
+$padding: 15px;
+$cols: 12;
+
+$screen-lg: 1200px;
+$screen-md: 992px;
+$screen-sm: 768px;
+$screen-xs: 500px;
+
+// Colours
+$light: #ccc;
+$dark: #263959;
+$white: #ffffff;
+
+$default: #fff;
+$primary: #47b8e0;
+$secondary: #7cc37c;
+$warning: #fc9368;
+$error: #ff6e6d;
+
+// Borders
+$border-light: $light;
+$border-dark: $dark;
+
+// Type
+// @import url('https://fonts.googleapis.com/css?family=Nunito:300,400,600,700');
+// $font-family: 'Nunito', sans-serif;
+$base-font-size: 16px;
+$weight-bold: 700;
+$weight-medium: 600;
+$weight-normal: 400;
+$weight-light: 300;
+
+$type-headings: #282828;
+$type-content: #7f9eb2;

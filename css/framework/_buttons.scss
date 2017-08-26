@@ -1,0 +1,29 @@
+.btn {
+    display: inline-block;
+    text-decoration: none;
+    font-size: $base-font-size;
+    border: 1px solid $border-light;
+    background-color: $default;
+    padding-top: 12px;
+    padding-bottom: 12px;
+    padding-left: 30px;
+    padding-right: 30px;
+    color: $type-headings;
+    &:hover {
+        background-color: darken($default, 5%);
+        border-color: darken($border-light, 5%);
+    }
+}
+
+.btn-primary {
+    @include customBtn($white, $primary);
+}
+.btn-secondary {
+    @include customBtn($white, $secondary);
+}
+.btn-warning {
+    @include customBtn($white, $warning);
+}
+.btn-error {
+    @include customBtn($white, $error);
+}
