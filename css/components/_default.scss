@@ -1,0 +1,151 @@
+html {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: $font-family;
+    font-size: $base-font-size;
+    line-height: $base-line-height;
+    font-weight: $normal;
+    margin: 0;
+    padding: 0;
+    color: $type;
+}
+
+* {
+    box-sizing: border-box;
+    outline: none;
+}
+
+h1, h2, h3, h4, h5, h6, strong {
+    font-weight: $bold;
+    margin-top: 0;
+}
+
+.wrapper {
+    padding-top: 45px;
+    padding-bottom: 45px;
+    @media (min-width: $screen-md) {
+        padding-top: 100px;
+        padding-bottom: 100px;
+    }
+}
+
+.btn {
+    background-color: white;
+    font-size: 16px;
+    font-weight: $normal;
+    color: $feature;
+    border-radius: 100px;
+    position: relative;
+    border: none;
+    @include trs(all, 250ms, ease-in-out);
+    cursor: pointer;
+    &:after {
+        content: '';
+        position: absolute;
+        top: -2px;
+        left: -2px;
+        display: block;
+        width: calc(100% + 4px);
+        height: calc(100% + 4px);
+        z-index: -1;
+        border-radius: 100px;
+        background: rgba(34,145,255,1);
+        background: -moz-linear-gradient(20deg, rgba(34,145,255,1) 0%, rgba(34,207,255,1) 100%);
+        background: -webkit-gradient(left bottom, right top, color-stop(0%, rgba(34,145,255,1)), color-stop(100%, rgba(34,207,255,1)));
+        background: -webkit-linear-gradient(20deg, rgba(34,145,255,1) 0%, rgba(34,207,255,1) 100%);
+        background: -o-linear-gradient(20deg, rgba(34,145,255,1) 0%, rgba(34,207,255,1) 100%);
+        background: -ms-linear-gradient(20deg, rgba(34,145,255,1) 0%, rgba(34,207,255,1) 100%);
+        background: linear-gradient(20deg, rgba(34,145,255,1) 0%, rgba(34,207,255,1) 100%);
+        filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#2291ff', endColorstr='#22cfff', GradientType=1 );
+    }
+    &:hover {
+        background-color: transparent;
+        color: white;
+    }
+}
+
+.btn-fill,
+.btn-fill:hover {
+    -webkit-transition: none !important;
+    -moz-transition: none !important;
+    -o-transition: none !important;
+    -ms-transition: none !important;
+    transition: none !important;
+    color: white;
+    border: none;
+    background: rgba(34,145,255,1);
+    background: -moz-linear-gradient(20deg, rgba(34,145,255,1) 0%, rgba(34,207,255,1) 100%);
+    background: -webkit-gradient(left bottom, right top, color-stop(0%, rgba(34,145,255,1)), color-stop(100%, rgba(34,207,255,1)));
+    background: -webkit-linear-gradient(20deg, rgba(34,145,255,1) 0%, rgba(34,207,255,1) 100%);
+    background: -o-linear-gradient(20deg, rgba(34,145,255,1) 0%, rgba(34,207,255,1) 100%);
+    background: -ms-linear-gradient(20deg, rgba(34,145,255,1) 0%, rgba(34,207,255,1) 100%);
+    background: linear-gradient(20deg, rgba(34,145,255,1) 0%, rgba(34,207,255,1) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#2291ff', endColorstr='#22cfff', GradientType=1 );
+    &:after {
+        display: none;
+    }
+}
+
+.line-pattern {
+    position: relative;
+    background-image: url('images/pattern_line.svg');
+    background-repeat: repeat-y;
+    background-size: 15px 15px;
+    background-position: top left;
+    &:before,
+    &:after {
+        content: '';
+        display: block;
+        width: 15px;
+        height: 15px;
+        background: url('images/pattern_plus.svg') no-repeat center center / 15px 15px;
+        position: absolute;
+        top: -18px;
+        left: 0;
+    }
+    &:after {
+        background: url('images/pattern_circle.svg') no-repeat center center / 15px 15px;
+        top: auto;
+        bottom: -16px;
+    }
+}
+
+.blue-wave {
+    position: relative;
+    &:after {
+        content: ' ';
+        display: block;
+        width: 71px;
+        height: 9px;
+        background: url('images/icon_wave.svg') no-repeat center center / 71px 9px;
+        position: absolute;
+        bottom: -24px;
+        left: 0;
+    }
+}
+
+[class*="deco-"] {
+    &:before {
+        content: '';
+        display: inline-block;
+        vertical-align: baseline;
+        width: 17px;
+        height: 17px;
+        margin-right: 20px;
+    }
+}
+
+.deco-square {
+    &:before {
+        background: url('images/deco_square.svg') no-repeat center center / 17px 17px;
+    }
+}
+
+.deco-triangle {
+    &:before {
+        background: url('images/deco_triangle.svg') no-repeat center center / 17px 17px;
+    }
+}
