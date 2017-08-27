@@ -5,8 +5,8 @@ ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
 require('vendor/autoload.php');
-require('classes/options.php');
-require('classes/cv_header.php');
+require('options.php');
+require('cv_header.php');
 
 use Dompdf\Dompdf;
 use Dompdf\Options;
