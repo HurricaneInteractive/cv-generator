@@ -4,8 +4,12 @@ ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
+require('vendor/autoload.php');
 require('classes/options.php');
 require('classes/cv_header.php');
+
+use Dompdf\Dompdf;
+use Dompdf\Options;
 
 /*
     use Dompdf\Dompdf;
@@ -25,8 +29,21 @@ require('classes/cv_header.php');
 class CV_PDF
 {
     public $cv_header;
+    public $file_binary;
 
-    function __construct($cv_headerInformation = null) {
-        $this->cv_header = new CV_Header();
+    function __construct($cv_info) {
+        $header = $cv_info['header'];
+        $this->cv_header = new CV_Header($header);
+
+        $this->createPDF();
+    }
+
+    public function createPDF() {
+        $html = '<div>';
+        $html .= '<p>Name: ' . $this->cv_header->getName() . '</p>';
+        // $html .= '<p>Email: ' . $this->cv_header['email'] . '</p>';
+        $html .= '</div>';
+
+        // var_dump($html);
     }
 }
