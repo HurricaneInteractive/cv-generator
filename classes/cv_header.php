@@ -46,13 +46,13 @@ class CV_Header
 
     function __construct($header_info) {
         if (isset($header_info) && !empty($header_info)) {
-        // var_dump($header_info);
-        if (array_key_exists('name', $header_info)) {
-            $this->name = $header_info['name'];
-        }
-        if (array_key_exists('email', $header_info)) {
-            $this->email = $header_info['email'];
-        }
+            // var_dump($header_info);
+            if (array_key_exists('name', $header_info)) {
+                $this->setName($header_info['name']);
+            }
+            if (array_key_exists('email', $header_info)) {
+                $this->setEmail($header_info['email']);
+            }
         }
         return $this->getHeaderInformation();
     }
@@ -66,6 +66,24 @@ class CV_Header
             'name' => $this->name,
             'email' => $this->email
         );
+    }
+
+    /**
+     *  @param string $name
+     *  @return string
+     */
+    public function setName($name) {
+        $this->name = $name;
+        return $this;
+    }
+
+    /**
+     *  @param string $email
+     *  @return string
+     */
+    public function setEmail($email) {
+        $this->email = $email;
+        return $this;
     }
 
     /**

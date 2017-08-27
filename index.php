@@ -11,13 +11,19 @@
         <meta charset="UTF-8" />
 		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link href="https://fonts.googleapis.com/css?family=Playfair+Display:400,700" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Nunito|Playfair+Display:400,700" rel="stylesheet">
 		<title>CV Generator</title>
 
         <link rel="stylesheet" href="style.css" />
     </head>
     <body>
-        <div id="output"></div>
+        <aside class="options-sidebar">
+            <ul class="sidebar-nav">
+                <li>
+                    <a href="#" id="generate">Generate</a>
+                </li>
+            </ul>
+        </aside>
         <div id="resume" class="page-a4">
             <div class="header">
                 <div class="row">
@@ -38,10 +44,14 @@
                 </div>
             </div>
         </div>
-        <button onClick="generate()">Generate Resume</button>
         <!-- <script src="https://unpkg.com/axios/dist/axios.min.js"></script> -->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
         <script>
+            $('#generate').on('click', function(e) {
+                e.preventDefault();
+                generate();
+            });
+
             function generate() {
                 let name = jQuery('#resume--name em').text();
                 let email = jQuery('#resume--email em').text();

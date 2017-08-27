@@ -26,7 +26,7 @@ class CV_PDF
     public function createPDF() {
 
         $name = '<p><strong>Name: </strong>' . $this->cv_header->getName() . '</p>';
-        $email = '<p><strong>Name: </strong>' . $this->cv_header->getEmail() . '</p>';
+        $email = '<p><strong>Email: </strong>' . $this->cv_header->getEmail() . '</p>';
 
         ob_start();
         ?>
@@ -36,15 +36,25 @@ class CV_PDF
                     <style>
                         strong {
                             color: #d20962;
-                            text-decoration: underline;
+                        }
+                        .section-title {
+                            width: 100%;
+                            padding: 15px 20px;
+                            color: white;
+                            background-color: #F54D67;
+                            font-size: 18px;
+                            margin: 0 0 20px 0;
                         }
                     </style>
                 </head>
                 <body>
-                    <?php 
-                        echo $name;
-                        echo $email; 
-                    ?>
+                    <div>
+                        <h2 class="section-title">Details</h2>
+                        <?php 
+                            echo $name;
+                            echo $email; 
+                        ?>
+                    </div>
                 </body>
             </html>
         <?php
@@ -54,6 +64,7 @@ class CV_PDF
 
         $options = new Options();
         $options->set('isPhpEnabled', true);
+        $options->set('defaultFont', 'helvetica');
 
         $dompdf = new Dompdf($options);
         $dompdf->load_html($html);
