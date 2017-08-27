@@ -36,6 +36,7 @@ class CV_PDF
                     <style>
                         strong {
                             color: #d20962;
+                            text-decoration: underline;
                         }
                     </style>
                 </head>
