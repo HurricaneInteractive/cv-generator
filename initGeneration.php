@@ -7,7 +7,8 @@ error_reporting(E_ALL);
 require('generatePDF.php');
 
 // Get "$_POST" object from data passed to axios call
-$data = json_decode(file_get_contents("php://input"), true);
+// AXIOS - $data = json_decode(file_get_contents("php://input"), true);
+$data = $_POST;
 $header = $data['header'];
 
 $cv_header = array(
@@ -19,7 +20,7 @@ $cv = new CV_PDF(array(
     'header' => $cv_header
 ));
 
-var_dump($cv->cv_header);
-die();
+// var_dump($cv->cv_header);
+// die();
 
 die();
