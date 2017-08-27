@@ -44,9 +44,27 @@ class CV_Header
       */
      private $personal_website;
 
-     function __construct() {
+     function __construct($header_info) {
+         if (isset($header_info) && !empty($header_info)) {
+            // var_dump($header_info);
+            if (array_key_exists('name', $header_info)) {
+                $this->name = $header_info['name'];
+            }
+            if (array_key_exists('email', $header_info)) {
+                $this->email = $header_info['email'];
+            }
+         }
+         return $this->getHeaderInformation();
+     }
+
+     public function getHeaderInformation() {
          return array(
-             $this->name
+            'name' => $this->name,
+            'email' => $this->email
          );
+     }
+
+     public function getName() {
+         return $this->name;
      }
 }
