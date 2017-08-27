@@ -11,21 +11,6 @@ require('classes/cv_header.php');
 use Dompdf\Dompdf;
 use Dompdf\Options;
 
-/*
-    use Dompdf\Dompdf;
-    use Dompdf\Options;
-
-    $html = '<div>Hello</div>';
-
-    if ( get_magic_quotes_gpc() )
-        $html = stripslashes($html);
-
-    $dompdf = new Dompdf();
-    $dompdf->load_html($html);
-    $dompdf->render();
-    $dompdf->stream("sample.pdf");
-*/
-
 class CV_PDF
 {
     public $cv_header;
@@ -39,11 +24,39 @@ class CV_PDF
     }
 
     public function createPDF() {
-        $html = '<div>';
-        $html .= '<p>Name: ' . $this->cv_header->getName() . '</p>';
-        // $html .= '<p>Email: ' . $this->cv_header['email'] . '</p>';
-        $html .= '</div>';
 
-        // var_dump($html);
+        $name = '<p><strong>Name: </strong>' . $this->cv_header->getName() . '</p>';
+        $email = '<p><strong>Name: </strong>' . $this->cv_header->getEmail() . '</p>';
+
+        ob_start();
+        ?>
+            <html>
+                <head>
+                    <meta charset='utf-8'>
+                    <style>
+                        strong {
+                            color: #d20962;
+                        }
+                    </style>
+                </head>
+                <body>
+                    <?php 
+                        echo $name;
+                        echo $email; 
+                    ?>
+                </body>
+            </html>
+        <?php
+        $html = ob_get_clean();
+
+        $resumeFilename = $this->cv_header->getName() . '-resume.pdf';
+
+        $options = new Options();
+        $options->set('isPhpEnabled', true);
+
+        $dompdf = new Dompdf($options);
+        $dompdf->load_html($html);
+        $dompdf->render();
+        $dompdf->stream($resumeFilename);
     }
 }
