@@ -6,23 +6,27 @@ namespace App\Libraries;
 // require('options.php');
 // require('cv_header.php');
 
-// use Dompdf\Dompdf;
-// use Dompdf\Options;
+use Dompdf\Dompdf;
+use Dompdf\Options;
 
-class CvPdf
+use App\Libraries\CV_Header as CV_Header;
+
+class CV_PDF
 {
     public $cv_header;
     public $file_binary;
 
-    // function __construct() {
-    //     // $header = $cv_info['header'];
-    //     // $this->cv_header = new CV_Header($header);
+    function __construct($cv_info) {
+        // var_dump($cv_info);
+        // die();
 
-    //     // $this->createPDF();
-    // }
+        $header = $cv_info['header'];
+        $this->cv_header = new CV_Header($header);
 
-    public static function is_ok() {
-        return 'Is Ok';
+        // var_dump($this->cv_header);
+        // die();
+
+        $this->createPDF();
     }
 
     public function createPDF() {

@@ -1,5 +1,7 @@
 <?php
 
+namespace App\Libraries;
+
 class CV_Header
 {
     /**
@@ -45,6 +47,9 @@ class CV_Header
     private $personal_website;
 
     function __construct($header_info) {
+        // var_dump($header_info);
+        //die();
+
         if (isset($header_info) && !empty($header_info)) {
             // var_dump($header_info);
             if (array_key_exists('name', $header_info)) {
