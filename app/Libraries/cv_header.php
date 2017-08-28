@@ -78,8 +78,10 @@ class CV_Header
      *  @return string
      */
     public function setName($name) {
-        $this->name = $name;
-        return $this;
+        if ($name != '' && $name != NULL) {
+            $this->name = $name;
+        }
+        return $this;   
     }
 
     /**
