@@ -5,7 +5,8 @@ class Example extends Component {
     constructor() {
         super();
         this.state = {
-            user_name: 'Adriaan'
+            user_name: 'Adriaan',
+            fileUrl: ''
         };
 
         this.onChange = this.onChange.bind(this);
@@ -23,6 +24,8 @@ class Example extends Component {
         let header = {
             'name': this.state.user_name
         }
+
+        const _this = this;
 
         $.ajax({
             type: 'POST',
@@ -53,6 +56,12 @@ class Example extends Component {
                     var URL = window.URL || window.webkitURL;
                     var downloadUrl = URL.createObjectURL(blob);
 
+                    // window.open(downloadUrl);
+
+                    _this.setState({
+                        fileUrl: downloadUrl
+                    });
+
                     if (filename) {
                         // use HTML5 a[download] attribute to specify filename
                         var a = document.createElement("a");
@@ -62,8 +71,8 @@ class Example extends Component {
                         } else {
                             a.href = downloadUrl;
                             a.download = filename;
-                            document.body.appendChild(a);
-                            a.click();
+                            // document.body.appendChild(a);
+                            // a.click();
                         }
                     } else {
                         window.location = downloadUrl;
@@ -77,10 +86,15 @@ class Example extends Component {
 
     render() {
         return (
-            <div>
-                <h1>Cool, it's working</h1>
+            <div className="container">
+                <h1>Resume Generation</h1>
                 <input value={this.state.user_name} onChange={(e) => {this.onChange(e)}} />
                 <button onClick={this.generate}>Generate</button>
+                <div style={{'marginTop': '30px'}}>
+                    {
+                        this.state.fileUrl !== '' ? (<iframe src={this.state.fileUrl} height="500px" width="100%" />) : ('')
+                    }
+                </div>
             </div>
         );
     }

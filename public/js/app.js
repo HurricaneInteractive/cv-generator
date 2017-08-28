@@ -41146,15 +41146,16 @@ var Example = function (_Component) {
     function Example() {
         _classCallCheck(this, Example);
 
-        var _this = _possibleConstructorReturn(this, (Example.__proto__ || Object.getPrototypeOf(Example)).call(this));
+        var _this2 = _possibleConstructorReturn(this, (Example.__proto__ || Object.getPrototypeOf(Example)).call(this));
 
-        _this.state = {
-            user_name: 'Adriaan'
+        _this2.state = {
+            user_name: 'Adriaan',
+            fileUrl: ''
         };
 
-        _this.onChange = _this.onChange.bind(_this);
-        _this.generate = _this.generate.bind(_this);
-        return _this;
+        _this2.onChange = _this2.onChange.bind(_this2);
+        _this2.generate = _this2.generate.bind(_this2);
+        return _this2;
     }
 
     _createClass(Example, [{
@@ -41171,6 +41172,8 @@ var Example = function (_Component) {
             var header = {
                 'name': this.state.user_name
             };
+
+            var _this = this;
 
             $.ajax({
                 type: 'POST',
@@ -41201,6 +41204,12 @@ var Example = function (_Component) {
                         var URL = window.URL || window.webkitURL;
                         var downloadUrl = URL.createObjectURL(blob);
 
+                        // window.open(downloadUrl);
+
+                        _this.setState({
+                            fileUrl: downloadUrl
+                        });
+
                         if (filename) {
                             // use HTML5 a[download] attribute to specify filename
                             var a = document.createElement("a");
@@ -41210,8 +41219,8 @@ var Example = function (_Component) {
                             } else {
                                 a.href = downloadUrl;
                                 a.download = filename;
-                                document.body.appendChild(a);
-                                a.click();
+                                // document.body.appendChild(a);
+                                // a.click();
                             }
                         } else {
                             window.location = downloadUrl;
@@ -41227,23 +41236,28 @@ var Example = function (_Component) {
     }, {
         key: 'render',
         value: function render() {
-            var _this2 = this;
+            var _this3 = this;
 
             return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                 'div',
-                null,
+                { className: 'container' },
                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                     'h1',
                     null,
-                    'Cool, it\'s working'
+                    'Resume Generation'
                 ),
                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { value: this.state.user_name, onChange: function onChange(e) {
-                        _this2.onChange(e);
+                        _this3.onChange(e);
                     } }),
                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                     'button',
                     { onClick: this.generate },
                     'Generate'
+                ),
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                    'div',
+                    { style: { 'marginTop': '30px' } },
+                    this.state.fileUrl !== '' ? __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('iframe', { src: this.state.fileUrl, height: '500px', width: '100%' }) : ''
                 )
             );
         }
