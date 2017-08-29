@@ -7,4 +7,18 @@
 
 require('./bootstrap');
 
+import React, { Component } from 'react';
+import ReactDOM from 'react-dom';
+import { BrowserRouter as Router, Route } from 'react-router-dom';  
+
+import CV from './components/CV';
 import Example from './components/Example';
+
+ReactDOM.render((
+    <Router>
+        <div>
+            <Route exact path="/" component={Example} />
+            <Route exact path="/cv/create" component={CV} />
+        </div>
+    </Router>
+), document.getElementById('app-body'));
