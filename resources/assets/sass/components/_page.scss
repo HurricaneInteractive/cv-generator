@@ -1,0 +1,30 @@
+.page-a4 {
+    font-family: 'Playfair Display', serif;
+    display: block;
+    margin: 20px auto 20px 300px;
+    max-width: 740px;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+$lightBlue: #007bff;
+
+#site-loading {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    background: $lightBlue;
+    width: 100%;
+    height: 100%;
+    h3 {
+        text-align: center;
+        line-height: 100vh;
+        color: white;
+        svg {
+            max-width: 50px;
+            margin-left: 15px;
+            vertical-align: middle;
+        }
+    }
+}
