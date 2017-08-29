@@ -1,6 +1,8 @@
 <?php
 
+use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,6 +15,21 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
+// Route::middleware('auth:api')->get('/user', function (Request $request) {
+//     return $request->user();
+// });
+
+
+// Route::get('/user', function() {
+//     // $user = auth()->user();
+//     // return json_encode($user);
+//     return Auth::user();
+// })->middleware('web');
+
+Route::get('/user', function (Request $request) {
     return $request->user();
+})->middleware('auth:api');
+
+Route::get('/users', function (Request $request) {
+    return User::all();
 });

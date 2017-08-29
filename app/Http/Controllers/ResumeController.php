@@ -4,13 +4,15 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request as Request;
 use Illuminate\Htpp\Response as Response;
+use JavaScript;
+use Illuminate\Support\Facades\Auth;
 
 use App\Libraries\CV_PDF as CV_PDF;
 
 class ResumeController extends Controller
 {
     public function __construct() {
-        
+        $this->middleware('auth');
     }
 
     public function makeResume(Request $request) 
@@ -27,6 +29,14 @@ class ResumeController extends Controller
 
         // return json_encode(array( 'name' => 'Adriaan', 'cv' => $cv ));
         die();
+    }
+
+    public function create()
+    {
+        JavaScript::put([
+            'user' => Auth::user()
+        ]);
+        return view('cv');
     }
 
 }

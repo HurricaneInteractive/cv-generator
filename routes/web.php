@@ -20,4 +20,6 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/cv', 'HomeController@cv')->name('cv');
+
+Route::get('/cv/create', 'ResumeController@create')->name('resume.create');
 Route::post('/cvmake', 'ResumeController@makeResume')->name('cvmake');
