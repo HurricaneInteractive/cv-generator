@@ -17,14 +17,22 @@ class CV extends Component {
         };
 
         this.getProcessStep = this.getProcessStep.bind(this);
+        this.changeStep = this.changeStep.bind(this);
     }
 
     getProcessStep() {
         const ProcessComponents = [
-            <Layout />,
+            <Layout changeStep={this.changeStep} />,
             <PersonalDetails />
         ];
         return ProcessComponents[this.state.creationStep];
+    }
+
+    changeStep(inc) {
+        let nxtStep = this.state.creationStep + inc;
+        this.setState({
+            creationStep: nxtStep
+        });
     }
 
     render() {

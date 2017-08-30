@@ -17,7 +17,6 @@ import Example from './components/Example';
 ReactDOM.render((
     <Router>
         <div>
-            <Route exact path="/" component={Example} />
             <Route exact path="/cv/create" component={CV} />
         </div>
     </Router>

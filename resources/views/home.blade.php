@@ -1,5 +1,5 @@
 @extends('layouts.app')
 
 @section('content')
-    <div id="app-body"></div>
+    <h2>Register / Login to start</h2>
 @endsection
