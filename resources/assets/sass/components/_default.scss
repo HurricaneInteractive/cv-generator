@@ -10,7 +10,7 @@ body {
     font-weight: $normal;
     margin: 0;
     padding: 0;
-    color: $type;
+    color: $type-light;
 }
 
 * {
@@ -19,15 +19,7 @@ body {
 }
 
 h1, h2, h3, h4, h5, h6, strong {
+    color: $type;
     font-weight: $bold;
     margin-top: 0;
-}
-
-.wrapper {
-    padding-top: 45px;
-    padding-bottom: 45px;
-    @media (min-width: $screen-md) {
-        padding-top: 100px;
-        padding-bottom: 100px;
-    }
 }
