@@ -3,40 +3,38 @@ import axios from 'axios';
 
 import { Loading } from './UI';
 
+import { Layout } from './Process/Layout';
+import { PersonalDetails } from './Process/PersonalDetails';
+
 class CV extends Component {
 
     constructor() {
         super();
 
         this.state = {
-            user: window.user
+            user: window.user,
+            creationStep: 0
         };
+
+        this.getProcessStep = this.getProcessStep.bind(this);
     }
 
-    // componentDidMount() {
-    //     fetch('/api/users')
-    //         .then(response => {
-    //             return response.json();
-    //         })
-    //         .then(users => {
-    //             console.log(users);
-    //             // this.setState({ users });
-    //         });
-    // }
+    getProcessStep() {
+        const ProcessComponents = [
+            <Layout />,
+            <PersonalDetails />
+        ];
+        return ProcessComponents[this.state.creationStep];
+    }
 
     render() {
-        
         let user = this.state.user;
-        console.log(user);
 
         if (user === '' || user === null) {
             return <Loading />
         }
 
-        return (
-            <h1>Hello {user.name}</h1>
-        );
-
+        return this.getProcessStep();
     }
 }
 
