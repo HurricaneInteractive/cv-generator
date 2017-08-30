@@ -9631,14 +9631,84 @@ strong {
   transition: -webkit-box-shadow 250ms ease-in-out;
   transition: box-shadow 250ms ease-in-out;
   transition: box-shadow 250ms ease-in-out, -webkit-box-shadow 250ms ease-in-out;
+  text-align: center;
+  cursor: pointer;
 }
 
 .process--layout ul li:not(:first-of-type) {
   margin-left: 65px;
 }
 
+.process--layout ul li img {
+  max-width: 116px;
+  display: block;
+  margin: 0 auto;
+}
+
+.process--layout ul li h3 {
+  text-transform: uppercase;
+  font-size: 16px;
+  margin: 30px 0 10px;
+  font-weight: 700;
+  color: #8C96A9;
+}
+
+.process--layout ul li p {
+  font-size: 16px;
+  line-height: 18px;
+}
+
+.process--layout ul li .layout-select {
+  border-radius: 100px;
+  border: none;
+  background-color: rgba(0, 211, 162, 0.8);
+  margin-top: 27px;
+  color: white;
+  padding: 15px 37px;
+  font-size: 14px;
+  font-weight: 700;
+  -webkit-transition: background-color 250ms ease-in-out;
+  transition: background-color 250ms ease-in-out;
+}
+
+.process--layout ul li .example-option {
+  margin-top: 22px;
+  -webkit-transform: translateY(-5px);
+          transform: translateY(-5px);
+  opacity: 0;
+  -webkit-transition: opacity 250ms ease-in-out, -webkit-transform 250ms ease-in-out;
+  transition: opacity 250ms ease-in-out, -webkit-transform 250ms ease-in-out;
+  transition: transform 250ms ease-in-out, opacity 250ms ease-in-out;
+  transition: transform 250ms ease-in-out, opacity 250ms ease-in-out, -webkit-transform 250ms ease-in-out;
+}
+
+.process--layout ul li .example-option span,
+.process--layout ul li .example-option a {
+  display: block;
+  font-weight: 300;
+  font-size: 14px;
+  line-height: 16px;
+  color: #00D3A2;
+  font-size: 14px;
+  line-height: 16px;
+}
+
+.process--layout ul li .example-option a {
+  font-weight: 700;
+}
+
 .process--layout ul li:hover {
   -webkit-box-shadow: 0 3px 8px 0 rgba(0, 0, 0, 0.16);
           box-shadow: 0 3px 8px 0 rgba(0, 0, 0, 0.16);
+}
+
+.process--layout ul li:hover .layout-select {
+  background-color: #00D3A2;
+}
+
+.process--layout ul li:hover .example-option {
+  -webkit-transform: translateY(0);
+          transform: translateY(0);
+  opacity: 1;
 }
 
