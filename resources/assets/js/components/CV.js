@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import { Link, Redirect } from 'react-router-dom';
 
 import { Loading } from './UI';
 
@@ -38,7 +39,7 @@ class CV extends Component {
     render() {
         let user = this.state.user;
 
-        if (user === '' || user === null) {
+        if ((user === '' || user === null) || (this.state.creationStep === null)) {
             return <Loading />
         }
 

@@ -20,7 +20,7 @@ export const Layout = (props) => {
         }
     ];
 
-   const changeToStep = (inc) => {
+    const changeToStep = (inc) => {
         props.changeStep(inc);
     }
 

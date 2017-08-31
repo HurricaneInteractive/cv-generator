@@ -17,7 +17,7 @@ import Example from './components/Example';
 ReactDOM.render((
     <Router>
         <div>
-            <Route exact path="/cv/create" component={CV} />
+            <Route path="/cv/create" component={CV} />
         </div>
     </Router>
 ), document.getElementById('app-body'));
