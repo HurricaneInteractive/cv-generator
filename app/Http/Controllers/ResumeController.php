@@ -12,7 +12,7 @@ use App\Libraries\CV_PDF as CV_PDF;
 class ResumeController extends Controller
 {
     public function __construct() {
-        $this->middleware('auth');
+        // $this->middleware('auth');
     }
 
     public function makeResume(Request $request) 

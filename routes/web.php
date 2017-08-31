@@ -21,5 +21,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/cv', 'HomeController@cv')->name('cv');
 
+// Route::get('/cv/create/{step}', 'ResumeController@create')->name('resume.create');
 Route::get('/cv/create', 'ResumeController@create')->name('resume.create');
+// Route::get('/cv/create/{step}', ['uses' => 'ResumeController@create', 'as' => 'resume.create']);
 Route::post('/cvmake', 'ResumeController@makeResume')->name('cvmake');
