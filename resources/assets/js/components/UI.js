@@ -41,3 +41,12 @@ export const Loading = (props) => {
         </div>
     )
 }
+
+export const ProcessBack = (props) => {
+    return (
+        <div onClick={() => {props.goBack()}} className="process-back">
+            <span className="arrow"></span>
+            <a>Back</a>
+        </div>
+    )
+}

@@ -6,28 +6,32 @@ export const Layout = (props) => {
         {
             'image': '/images/offset-sidebar.svg',
             'title': 'Offset Sidebar',
-            'description': 'Professional looking layout suitable for corporate positions.'
+            'description': 'Professional looking layout suitable for corporate positions.',
+            'layout_id': 'offset-sidbar'
         },
         {
             'image': '/images/two-columns.svg',
             'title': '2 Columns',
-            'description': 'Professional looking layout suitable for corporate positions.'
+            'description': 'Professional looking layout suitable for corporate positions.',
+            'layout_id': 'two-columns'
         },
         {
             'image': '/images/content-focused.svg',
             'title': 'Content Focused',
-            'description': 'Professional looking layout suitable for corporate positions.'
+            'description': 'Professional looking layout suitable for corporate positions.',
+            'layout_id': 'content-focused'
         }
     ];
 
-    const changeToStep = (inc) => {
+    const submitLayoutChoice = (inc, layout) => {
         props.changeStep(inc);
+        props.chooseLayout(layout);
     }
 
     const renderLayoutOptions = () => {
         return LayoutOptions.map((layout, index) => {
             return (
-                <li key={index} onClick={() => { changeToStep(1) }}>
+                <li className={ props.currentLayout === layout.layout_id ? 'active' : '' } key={index} onClick={() => { submitLayoutChoice(1, layout.layout_id) }}>
                     <img src={layout.image} />
                     <h3>{layout.title}</h3>
                     <p>{layout.description}</p>

@@ -9627,11 +9627,12 @@ strong {
   list-style: none;
   background-color: white;
   border-radius: 2px;
-  -webkit-transition: -webkit-box-shadow 250ms ease-in-out;
-  transition: -webkit-box-shadow 250ms ease-in-out;
-  transition: box-shadow 250ms ease-in-out;
-  transition: box-shadow 250ms ease-in-out, -webkit-box-shadow 250ms ease-in-out;
+  -webkit-transition: border-color 250ms ease-in-out, -webkit-box-shadow 250ms ease-in-out;
+  transition: border-color 250ms ease-in-out, -webkit-box-shadow 250ms ease-in-out;
+  transition: box-shadow 250ms ease-in-out, border-color 250ms ease-in-out;
+  transition: box-shadow 250ms ease-in-out, border-color 250ms ease-in-out, -webkit-box-shadow 250ms ease-in-out;
   text-align: center;
+  border: 1px solid transparent;
   cursor: pointer;
 }
 
@@ -9702,6 +9703,10 @@ strong {
           box-shadow: 0 3px 8px 0 rgba(0, 0, 0, 0.16);
 }
 
+.process--layout ul li:hover.active {
+  border-color: transparent;
+}
+
 .process--layout ul li:hover .layout-select {
   background-color: #00D3A2;
 }
@@ -9710,5 +9715,13 @@ strong {
   -webkit-transform: translateY(0);
           transform: translateY(0);
   opacity: 1;
+}
+
+.process--layout ul li.active {
+  border-color: rgba(0, 211, 162, 0.5);
+}
+
+.process--layout ul li.active .layout-select {
+  background-color: #00D3A2;
 }
 

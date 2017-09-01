@@ -13,18 +13,28 @@ class CV extends Component {
         super();
 
         this.state = {
-            user: window.user,
-            creationStep: 0
+            user: window.id,
+            creationStep: 0,
+            layout: '',
+            header: {
+                'name': '',
+                'email': '',
+                'phone_number': '',
+                'address': '',
+                'personal_website': ''
+            }
         };
 
         this.getProcessStep = this.getProcessStep.bind(this);
         this.changeStep = this.changeStep.bind(this);
+        this.chooseDocumentLayout = this.chooseDocumentLayout.bind(this);
+        this.updateHeaderInformation = this.updateHeaderInformation.bind(this);
     }
 
     getProcessStep() {
         const ProcessComponents = [
-            <Layout changeStep={this.changeStep} />,
-            <PersonalDetails />
+            <Layout currentLayout={this.state.layout} changeStep={this.changeStep} chooseLayout={this.chooseDocumentLayout} />,
+            <PersonalDetails headerValue={this.state.header} updateInfo={this.updateHeaderInformation} changeStep={this.changeStep} />
         ];
         return ProcessComponents[this.state.creationStep];
     }
@@ -34,6 +44,14 @@ class CV extends Component {
         this.setState({
             creationStep: nxtStep
         });
+    }
+
+    chooseDocumentLayout(layout) {
+        this.setState({ layout: layout });
+    }
+
+    updateHeaderInformation(key, value) {
+
     }
 
     render() {

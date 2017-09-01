@@ -27,8 +27,9 @@
                 list-style: none;
                 background-color: white;
                 border-radius: 2px;
-                transition: box-shadow 250ms ease-in-out;
+                transition: box-shadow 250ms ease-in-out, border-color 250ms ease-in-out;
                 text-align: center;
+                border: 1px solid transparent;
                 cursor: pointer;
                 &:not(:first-of-type) {
                     margin-left: 65px;
@@ -80,12 +81,21 @@
                 }
                 &:hover {
                     box-shadow: 0 3px 8px 0 rgba(0, 0, 0, 0.16);
+                    &.active {
+                        border-color: transparent;
+                    }
                     .layout-select {
                         background-color: $feature;
                     }
                     .example-option {
                         transform: translateY(0);
                         opacity: 1;
+                    }
+                }
+                &.active {
+                    border-color: rgba($feature, 0.5);
+                    .layout-select {
+                        background-color: $feature;
                     }
                 }
             }
