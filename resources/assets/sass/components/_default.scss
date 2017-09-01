@@ -23,3 +23,25 @@ h1, h2, h3, h4, h5, h6, strong {
     font-weight: $bold;
     margin-top: 0;
 }
+
+input,
+.default-input {
+    display: block;
+    color: $type;
+    font-weight: $normal;
+    font-family: $font-family;
+    line-height: 21px;
+    font-size: $base-font-size;
+}
+
+input {
+    border: 1px solid rgba($type-light, 0.8);
+    border-width: 0 0 1px 0;
+    padding: 8px 0;
+    margin: 16px 0 8px 0;
+    transition: border-color 250ms ease-in-out;
+    width: 100%;
+    &:focus {
+        border-color: $feature;
+    }
+}

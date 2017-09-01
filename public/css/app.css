@@ -9590,6 +9590,63 @@ strong {
   margin-top: 0;
 }
 
+input,
+.default-input,
+.form-input .placeholder {
+  display: block;
+  color: #434C5E;
+  font-weight: 400;
+  font-family: "Quicksand", sans-serif;
+  line-height: 21px;
+  font-size: 18px;
+}
+
+input {
+  border: 1px solid rgba(140, 150, 169, 0.8);
+  border-width: 0 0 1px 0;
+  padding: 8px 0;
+  margin: 16px 0 8px 0;
+  -webkit-transition: border-color 250ms ease-in-out;
+  transition: border-color 250ms ease-in-out;
+  width: 100%;
+}
+
+input:focus {
+  border-color: #00D3A2;
+}
+
+.form-input {
+  display: inline-block;
+  width: 100%;
+  position: relative;
+  margin-bottom: 28px;
+}
+
+.form-input .placeholder {
+  color: #8C96A9;
+  position: absolute;
+  top: 24px;
+  pointer-events: none;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  -webkit-transition: all 150ms ease-in-out;
+  transition: all 150ms ease-in-out;
+}
+
+.form-input.filled-in .placeholder,
+.form-input input:focus + .placeholder {
+  font-size: 14px;
+  color: #00D3A2;
+  font-weight: bold;
+  top: 0;
+}
+
+.form-input.filled-in input {
+  border-color: #00D3A2;
+}
+
 .process {
   padding-top: 100px;
   max-width: 1030px;
@@ -9723,5 +9780,28 @@ strong {
 
 .process--layout ul li.active .layout-select {
   background-color: #00D3A2;
+}
+
+.process--personal-details {
+  margin-right: -40px;
+  margin-left: -40px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.process--personal-details:before,
+.process--personal-details:after {
+  content: " ";
+  display: table;
+}
+
+.process--personal-details:after {
+  clear: both;
+}
+
+.process--personal-details .half {
+  width: 50%;
+  margin: 0 40px;
 }
 

@@ -101,4 +101,14 @@
             }
         }
     }
+    &--personal-details {
+        @include clearfix();
+        margin-right: -40px;
+        margin-left: -40px;
+        display: flex;
+        .half {
+            width: 50%;
+            margin: 0 40px;
+        }
+    }
 }

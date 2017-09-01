@@ -1,0 +1,28 @@
+.form-input {
+    display: inline-block;
+    width: 100%;
+    position: relative;
+    margin-bottom: 28px;
+    .placeholder {
+        @extend .default-input;
+        color: $type-light;
+        position: absolute;
+        // z-index: -1;
+        top: 24px;
+        pointer-events: none;
+        user-select: none;
+        transition: all 150ms ease-in-out;
+    }
+    &.filled-in .placeholder,
+    input:focus + .placeholder {
+        font-size: 14px;
+        color: $feature;
+        font-weight: bold;
+        top: 0;
+    }
+    &.filled-in {
+        input {
+            border-color: $feature;
+        }
+    }
+}
