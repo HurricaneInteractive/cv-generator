@@ -14,7 +14,7 @@ class CV extends Component {
 
         this.state = {
             user: window.id,
-            creationStep: 0,
+            creationStep: 1,
             layout: '',
             header: {
                 'name': '',
@@ -22,6 +22,12 @@ class CV extends Component {
                 'phone_number': '',
                 'address': '',
                 'personal_website': ''
+            },
+            socialMedia: {
+                'facebook': '',
+                'twitter': '',
+                'linkedin': '',
+                'google_plus': ''
             }
         };
 
@@ -33,8 +39,17 @@ class CV extends Component {
 
     getProcessStep() {
         const ProcessComponents = [
-            <Layout currentLayout={this.state.layout} changeStep={this.changeStep} chooseLayout={this.chooseDocumentLayout} />,
-            <PersonalDetails headerValue={this.state.header} updateInfo={this.updateHeaderInformation} changeStep={this.changeStep} />
+            <Layout 
+                currentLayout={this.state.layout} 
+                changeStep={this.changeStep} 
+                chooseLayout={this.chooseDocumentLayout} 
+            />,
+            <PersonalDetails 
+                headerValue={this.state.header}
+                socialMediaValue={this.state.socialMedia}
+                updateInfo={this.updateHeaderInformation} 
+                changeStep={this.changeStep}
+            />
         ];
         return ProcessComponents[this.state.creationStep];
     }
@@ -51,7 +66,15 @@ class CV extends Component {
     }
 
     updateHeaderInformation(key, value) {
+        let head = this.state.header;
 
+        this.setState({
+            header: Object.assign(
+                {},
+                head,
+                { [key]: value }
+            )
+        });
     }
 
     render() {
