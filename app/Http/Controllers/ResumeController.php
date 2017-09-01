@@ -34,9 +34,9 @@ class ResumeController extends Controller
     public function create()
     {
         JavaScript::put([
-            'user' => Auth::user()
+            'id' => Auth::user()->id
         ]);
-        return view('cv');
+        return view('cv')->with('nav', 'false');
     }
 
 }
