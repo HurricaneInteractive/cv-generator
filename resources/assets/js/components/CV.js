@@ -35,6 +35,7 @@ class CV extends Component {
         this.changeStep = this.changeStep.bind(this);
         this.chooseDocumentLayout = this.chooseDocumentLayout.bind(this);
         this.updateHeaderInformation = this.updateHeaderInformation.bind(this);
+        this.updateSocialMediaInformation = this.updateSocialMediaInformation.bind(this);
     }
 
     getProcessStep() {
@@ -48,6 +49,7 @@ class CV extends Component {
                 headerValue={this.state.header}
                 socialMediaValue={this.state.socialMedia}
                 updateInfo={this.updateHeaderInformation} 
+                updateSocial={this.updateSocialMediaInformation}
                 changeStep={this.changeStep}
             />
         ];
@@ -72,6 +74,18 @@ class CV extends Component {
             header: Object.assign(
                 {},
                 head,
+                { [key]: value }
+            )
+        });
+    }
+
+    updateSocialMediaInformation(key, value) {
+        let socials = this.state.socialMedia;
+
+        this.setState({
+            socialMedia: Object.assign(
+                {},
+                socials,
                 { [key]: value }
             )
         });

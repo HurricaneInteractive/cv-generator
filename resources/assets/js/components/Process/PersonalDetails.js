@@ -30,6 +30,25 @@ export const PersonalDetails = (props) => {
         }
     ];
 
+    const socialMedia = [
+        {
+            'name': 'facebook',
+            'src': '/images/facebook.svg'
+        },
+        {
+            'name': 'twitter',
+            'src': '/images/twitter.svg'
+        },
+        {
+            'name': 'linkedin',
+            'src': '/images/linkedin.svg'
+        },
+        {
+            'name': 'google_plus',
+            'src': '/images/google_plus.svg'
+        }
+    ];
+
     const changeProcessStep = (inc) => {
         props.changeStep(inc);
     }
@@ -60,6 +79,47 @@ export const PersonalDetails = (props) => {
         );
     }
 
+    const renderSocialMedia = (name, src) => {
+        let value = socials[name];
+        let classAttr = '';
+
+        if (value !== '' && value !== null) {
+            classAttr += 'linked';
+        }
+
+        return (
+            <li key={name} className={`${classAttr}`} onClick={(e) => { displayPopupInput(e) }} >
+                <img src={src} alt={`Social media icons - ${name}`} />
+                <div className="popup-input">
+                    <input 
+                        type="text" 
+                        name={name} 
+                        value={socials[name]} 
+                        onChange={(e) => { updateSocialMedia(e) }}
+                        autoFocus={true}
+                    />
+                </div>
+            </li>
+        );
+    }
+
+    const displayPopupInput = (e) => {
+        let target = e.target;
+        
+        if (target.nodeName === 'LI') {
+            let popup = target.getElementsByClassName('popup-input')[0];
+            
+            popup.classList.add('active');
+        }
+    }
+
+    const updateSocialMedia = (e) => {
+        const key = e.target.name,
+            value = e.target.value;
+        
+        props.updateSocial(key, value);
+    }
+
     return (
         <div className="process">
             <ProcessBack goBack={() => { changeProcessStep(-1) } } />
@@ -77,6 +137,16 @@ export const PersonalDetails = (props) => {
                 </div>
                 <div className="half">
                     { renderFormElems(1, 'personal_website', 'text', 'Personal website (optional)') }
+                    <div className="process--social">
+                        <h3>Social media accounts (optional)</h3>
+                        <ul>
+                            {
+                                socialMedia.map((social, index) => {
+                                    return renderSocialMedia(social.name, social.src)
+                                })
+                            }
+                        </ul>
+                    </div>
                 </div>
             </div>
         </div>

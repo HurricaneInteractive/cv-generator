@@ -58335,6 +58335,7 @@ var CV = function (_Component) {
         _this.changeStep = _this.changeStep.bind(_this);
         _this.chooseDocumentLayout = _this.chooseDocumentLayout.bind(_this);
         _this.updateHeaderInformation = _this.updateHeaderInformation.bind(_this);
+        _this.updateSocialMediaInformation = _this.updateSocialMediaInformation.bind(_this);
         return _this;
     }
 
@@ -58349,6 +58350,7 @@ var CV = function (_Component) {
                 headerValue: this.state.header,
                 socialMediaValue: this.state.socialMedia,
                 updateInfo: this.updateHeaderInformation,
+                updateSocial: this.updateSocialMediaInformation,
                 changeStep: this.changeStep
             })];
             return ProcessComponents[this.state.creationStep];
@@ -58373,6 +58375,15 @@ var CV = function (_Component) {
 
             this.setState({
                 header: Object.assign({}, head, _defineProperty({}, key, value))
+            });
+        }
+    }, {
+        key: 'updateSocialMediaInformation',
+        value: function updateSocialMediaInformation(key, value) {
+            var socials = this.state.socialMedia;
+
+            this.setState({
+                socialMedia: Object.assign({}, socials, _defineProperty({}, key, value))
             });
         }
     }, {
@@ -58533,6 +58544,20 @@ var PersonalDetails = function PersonalDetails(props) {
         'placeholder': 'Address'
     }];
 
+    var socialMedia = [{
+        'name': 'facebook',
+        'src': '/images/facebook.svg'
+    }, {
+        'name': 'twitter',
+        'src': '/images/twitter.svg'
+    }, {
+        'name': 'linkedin',
+        'src': '/images/linkedin.svg'
+    }, {
+        'name': 'google_plus',
+        'src': '/images/google_plus.svg'
+    }];
+
     var changeProcessStep = function changeProcessStep(inc) {
         props.changeStep(inc);
     };
@@ -58569,6 +58594,53 @@ var PersonalDetails = function PersonalDetails(props) {
         );
     };
 
+    var renderSocialMedia = function renderSocialMedia(name, src) {
+        var value = socials[name];
+        var classAttr = '';
+
+        if (value !== '' && value !== null) {
+            classAttr += 'linked';
+        }
+
+        return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+            'li',
+            { key: name, className: '' + classAttr, onClick: function onClick(e) {
+                    displayPopupInput(e);
+                } },
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('img', { src: src, alt: 'Social media icons - ' + name }),
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                'div',
+                { className: 'popup-input' },
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', {
+                    type: 'text',
+                    name: name,
+                    value: socials[name],
+                    onChange: function onChange(e) {
+                        updateSocialMedia(e);
+                    },
+                    autoFocus: true
+                })
+            )
+        );
+    };
+
+    var displayPopupInput = function displayPopupInput(e) {
+        var target = e.target;
+
+        if (target.nodeName === 'LI') {
+            var popup = target.getElementsByClassName('popup-input')[0];
+
+            popup.classList.add('active');
+        }
+    };
+
+    var updateSocialMedia = function updateSocialMedia(e) {
+        var key = e.target.name,
+            value = e.target.value;
+
+        props.updateSocial(key, value);
+    };
+
     return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
         'div',
         { className: 'process' },
@@ -58602,7 +58674,23 @@ var PersonalDetails = function PersonalDetails(props) {
             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                 'div',
                 { className: 'half' },
-                renderFormElems(1, 'personal_website', 'text', 'Personal website (optional)')
+                renderFormElems(1, 'personal_website', 'text', 'Personal website (optional)'),
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                    'div',
+                    { className: 'process--social' },
+                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                        'h3',
+                        null,
+                        'Social media accounts (optional)'
+                    ),
+                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                        'ul',
+                        null,
+                        socialMedia.map(function (social, index) {
+                            return renderSocialMedia(social.name, social.src);
+                        })
+                    )
+                )
             )
         )
     );
