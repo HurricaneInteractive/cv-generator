@@ -1,0 +1,23 @@
+.process-back {
+    position: fixed;
+    top: 15px;
+    left: 15px;
+    display: inline-block;
+    line-height: 10px;
+    cursor: pointer;
+    span {
+        display: inline-block;
+        width: 13px;
+        height: 9px;
+        background: url('/images/arrow-left.svg') no-repeat center center / 13px 9px;
+        vertical-align: bottom;
+    }
+    a {
+        text-decoration: none;
+        font-weight: $bold;
+        font-size: 11px;
+        color: $type-light;
+        margin-left: 5px;
+        text-transform: uppercase;
+    }
+}

@@ -9615,6 +9615,20 @@ input:focus {
   border-color: #00D3A2;
 }
 
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus input:-webkit-autofill,
+textarea:-webkit-autofill,
+textarea:-webkit-autofill:hover textarea:-webkit-autofill:focus,
+select:-webkit-autofill,
+select:-webkit-autofill:hover,
+select:-webkit-autofill:focus {
+  -webkit-text-fill-color: #434C5E;
+  -webkit-box-shadow: 0 0 0px 1000px rgba(0, 211, 162, 0.2) inset;
+  -webkit-transition: background-color 5000s ease-in-out 0s;
+  transition: background-color 5000s ease-in-out 0s;
+}
+
 .form-input {
   display: inline-block;
   width: 100%;
@@ -9645,6 +9659,32 @@ input:focus {
 
 .form-input.filled-in input {
   border-color: #00D3A2;
+}
+
+.process-back {
+  position: fixed;
+  top: 15px;
+  left: 15px;
+  display: inline-block;
+  line-height: 10px;
+  cursor: pointer;
+}
+
+.process-back span {
+  display: inline-block;
+  width: 13px;
+  height: 9px;
+  background: url("/images/arrow-left.svg") no-repeat center center/13px 9px;
+  vertical-align: bottom;
+}
+
+.process-back a {
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 11px;
+  color: #8C96A9;
+  margin-left: 5px;
+  text-transform: uppercase;
 }
 
 .process {
