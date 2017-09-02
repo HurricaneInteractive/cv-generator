@@ -58558,6 +58558,17 @@ var PersonalDetails = function PersonalDetails(props) {
         'src': '/images/google_plus.svg'
     }];
 
+    HTMLElement.prototype.hasClass = function (target) {
+        var classlist = this.classList;
+        for (var i = 0; i < classlist.length; i++) {
+            if (classlist[i] === target) {
+                return true;
+                break;
+            }
+        }
+        return false;
+    };
+
     var changeProcessStep = function changeProcessStep(inc) {
         props.changeStep(inc);
     };
@@ -58630,7 +58641,16 @@ var PersonalDetails = function PersonalDetails(props) {
         if (target.nodeName === 'LI') {
             var popup = target.getElementsByClassName('popup-input')[0];
 
-            popup.classList.add('active');
+            if (popup.hasClass('active')) {
+                popup.classList.remove('active');
+            } else {
+                var all_popups = document.getElementsByClassName('popup-input');
+                for (var i = 0; i < all_popups.length; i++) {
+                    all_popups[i].classList.remove('active');
+                }
+                popup.classList.add('active');
+                popup.getElementsByTagName('input')[0].focus();
+            }
         }
     };
 

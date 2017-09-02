@@ -49,6 +49,17 @@ export const PersonalDetails = (props) => {
         }
     ];
 
+    HTMLElement.prototype.hasClass = function(target) {
+        let classlist = this.classList;
+        for (let i = 0; i < classlist.length; i++) {
+            if (classlist[i] === target) {
+                return true;
+                break;
+            }
+        }
+        return false;
+    }
+
     const changeProcessStep = (inc) => {
         props.changeStep(inc);
     }
@@ -108,8 +119,18 @@ export const PersonalDetails = (props) => {
         
         if (target.nodeName === 'LI') {
             let popup = target.getElementsByClassName('popup-input')[0];
-            
-            popup.classList.add('active');
+
+            if (popup.hasClass('active')) {
+                popup.classList.remove('active');
+            }
+            else {
+                let all_popups = document.getElementsByClassName('popup-input');
+                for (let i = 0; i < all_popups.length; i++) {
+                    all_popups[i].classList.remove('active');
+                }
+                popup.classList.add('active');
+                popup.getElementsByTagName('input')[0].focus();
+            }
         }
     }
 
