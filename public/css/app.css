@@ -9880,6 +9880,10 @@ input:focus {
 .process--social ul li img {
   max-height: 30px;
   pointer-events: none;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
 }
 
 .process--social ul li .popup-input {
@@ -9890,6 +9894,7 @@ input:focus {
           transform: translateX(-52%);
   width: 275px;
   background: white;
+  z-index: 3;
   opacity: 0;
   pointer-events: none;
   -webkit-box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2);
@@ -9918,6 +9923,7 @@ input:focus {
   width: -moz-available;
   width: -webkit-fill-available;
   border-width: 0;
+  background-color: white;
 }
 
 .process--social ul li .popup-input.active {

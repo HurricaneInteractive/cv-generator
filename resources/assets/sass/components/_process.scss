@@ -159,6 +159,7 @@
                 img {
                     max-height: 30px;
                     pointer-events: none;
+                    user-select: none;
                 }
                 .popup-input {
                     position: absolute;
@@ -167,6 +168,7 @@
                     transform: translateX(-52%);
                     width: 275px;
                     background: white;
+                    z-index: 3;
                     // padding: 10px;
                     opacity: 0;
                     pointer-events: none;
@@ -191,6 +193,7 @@
                         width: -moz-available;
                         width: -webkit-fill-available;
                         border-width: 0;
+                        background-color: white;
                     }
                     &.active {
                         pointer-events: auto;
