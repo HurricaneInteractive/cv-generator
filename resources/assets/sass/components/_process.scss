@@ -111,4 +111,93 @@
             margin: 0 40px;
         }
     }
+    &--social {
+        h3 {
+            font-size: 14px;
+            color: $feature;
+            font-weight: bold;
+            margin: 0 0 20px;
+        }
+        ul {
+            margin: 0;
+            padding: 0;
+            @include clearfix();
+            li {
+                list-style: none;
+                width: 80px;
+                height: 80px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                float: left;
+                border-radius: 5px;
+                transition: box-shadow 250ms ease-in-out, border-color 250ms ease-in-out;
+                cursor: pointer;
+                border: 1px solid transparent;
+                position: relative;
+                &:not(:first-of-type) {
+                    margin-left: 20px;
+                }
+                &.linked {
+                    border-color: rgba($feature, 0.1);
+                    &:after {
+                        content: '';
+                        display: block;
+                        width: 14px;
+                        height: 14px;
+                        background: url('/images/linked.svg') no-repeat center center / 14px 14px;
+                        position: absolute;
+                        top: -7px;
+                        left: -7px;
+                    }
+                }
+                &:hover,
+                &.linked:hover {
+                    box-shadow: 0 3px 8px 0 rgba(0, 0, 0, 0.16);
+                    border-color: transparent;
+                }
+                img {
+                    max-height: 30px;
+                    pointer-events: none;
+                }
+                .popup-input {
+                    position: absolute;
+                    bottom: -75%;
+                    left: 50%;
+                    transform: translateX(-52%);
+                    width: 275px;
+                    background: white;
+                    // padding: 10px;
+                    opacity: 0;
+                    pointer-events: none;
+                    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2);
+                    border: 1px solid $feature;
+                    transition: opacity 150ms ease-in-out;
+                    &:before {
+                        content: '';
+                        width: 0;
+                        height: 0;
+                        border-style: solid;
+                        border-width: 0 10px 11px 10px;
+                        border-color: transparent transparent $feature transparent;
+                        display: block;
+                        position: absolute;
+                        top: -11px;
+                        left: calc(50% - 5px);
+                    }
+                    input {
+                        margin: 10px;
+                        width: 100%;
+                        width: -moz-available;
+                        width: -webkit-fill-available;
+                        border-width: 0;
+                    }
+                    &.active {
+                        pointer-events: auto;
+                        opacity: 1;
+                    }
+                }
+            }
+        }
+    }
 }
