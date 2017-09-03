@@ -9,7 +9,7 @@ class CV_Header
      *
      *   @var string
      */
-    private $name = 'default';
+    private $name;
      
      /**
       *   Email of user
@@ -21,7 +21,7 @@ class CV_Header
      /**
       *   Phone number of user
       *
-      *   @var integer
+      *   @var string
       */
     private $phone_number;
  
@@ -58,6 +58,12 @@ class CV_Header
             if (array_key_exists('email', $header_info)) {
                 $this->setEmail($header_info['email']);
             }
+            if (array_key_exists('phone_number', $header_info)) {
+                $this->setPhoneNumber($header_info['phone_number']);
+            }
+            if (array_key_exists('address', $header_info)) {
+                $this->setAddress($header_info['address']);
+            }
         }
         return $this->getHeaderInformation();
     }
@@ -69,7 +75,9 @@ class CV_Header
     public function getHeaderInformation() {
         return array(
             'name' => $this->name,
-            'email' => $this->email
+            'email' => $this->email,
+            'phone_number' => $this->phone_number,
+            'address' => $this->address
         );
     }
 
@@ -94,6 +102,24 @@ class CV_Header
     }
 
     /**
+     *  @param string $phone_number
+     *  @return string
+     */
+     public function setPhoneNumber($phone_number) {
+        $this->phone_number = $phone_number;
+        return $this;
+    }
+
+    /**
+     *  @param string $address
+     *  @return string
+     */
+     public function setAddress($address) {
+        $this->address = $address;
+        return $this;
+    }
+
+    /**
      *  Gets the users name
      *  @return string
      */
@@ -107,5 +133,21 @@ class CV_Header
      */
     public function getEmail() {
         return $this->email;
+    }
+
+    /**
+     *  Gets the users phone number
+     *  @return string
+     */
+     public function getPhoneNumber() {
+        return $this->phone_number;
+    }
+
+    /**
+     *  Gets the users address
+     *  @return string
+     */
+     public function getAddress() {
+        return $this->address;
     }
 }
