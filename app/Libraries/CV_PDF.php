@@ -33,6 +33,8 @@ class CV_PDF
 
         $name = '<p><strong>Name: </strong>' . $this->cv_header->getName() . '</p>';
         $email = '<p><strong>Email: </strong>' . $this->cv_header->getEmail() . '</p>';
+        $phone_number = '<p><strong>Phone Number: </strong>' . $this->cv_header->getPhoneNumber() . '</p>';
+        $address = '<p><strong>Address: </strong>' . $this->cv_header->getAddress() . '</p>';
 
         ob_start();
         ?>
@@ -58,7 +60,9 @@ class CV_PDF
                         <h2 class="section-title">Details</h2>
                         <?php 
                             echo $name;
-                            echo $email; 
+                            echo $email;
+                            echo $phone_number;
+                            echo $address;
                         ?>
                     </div>
                 </body>
