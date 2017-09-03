@@ -20,7 +20,7 @@ export const PersonalDetails = (props) => {
         },
         {
             'key': 'phone_number',
-            'type': 'number',
+            'type': 'text',
             'placeholder': 'Phone Number'
         },
         {
@@ -167,6 +167,7 @@ export const PersonalDetails = (props) => {
                                 })
                             }
                         </ul>
+                        <button onClick={(e) => { props.generatePDF(e) }}>Generate</button>
                     </div>
                 </div>
             </div>

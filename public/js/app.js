@@ -58310,9 +58310,9 @@ var CV = function (_Component) {
     function CV() {
         _classCallCheck(this, CV);
 
-        var _this = _possibleConstructorReturn(this, (CV.__proto__ || Object.getPrototypeOf(CV)).call(this));
+        var _this2 = _possibleConstructorReturn(this, (CV.__proto__ || Object.getPrototypeOf(CV)).call(this));
 
-        _this.state = {
+        _this2.state = {
             user: window.id,
             creationStep: 1,
             layout: '',
@@ -58331,12 +58331,14 @@ var CV = function (_Component) {
             }
         };
 
-        _this.getProcessStep = _this.getProcessStep.bind(_this);
-        _this.changeStep = _this.changeStep.bind(_this);
-        _this.chooseDocumentLayout = _this.chooseDocumentLayout.bind(_this);
-        _this.updateHeaderInformation = _this.updateHeaderInformation.bind(_this);
-        _this.updateSocialMediaInformation = _this.updateSocialMediaInformation.bind(_this);
-        return _this;
+        _this2.generate = _this2.generate.bind(_this2);
+
+        _this2.getProcessStep = _this2.getProcessStep.bind(_this2);
+        _this2.changeStep = _this2.changeStep.bind(_this2);
+        _this2.chooseDocumentLayout = _this2.chooseDocumentLayout.bind(_this2);
+        _this2.updateHeaderInformation = _this2.updateHeaderInformation.bind(_this2);
+        _this2.updateSocialMediaInformation = _this2.updateSocialMediaInformation.bind(_this2);
+        return _this2;
     }
 
     _createClass(CV, [{
@@ -58351,7 +58353,8 @@ var CV = function (_Component) {
                 socialMediaValue: this.state.socialMedia,
                 updateInfo: this.updateHeaderInformation,
                 updateSocial: this.updateSocialMediaInformation,
-                changeStep: this.changeStep
+                changeStep: this.changeStep,
+                generatePDF: this.generate
             })];
             return ProcessComponents[this.state.creationStep];
         }
@@ -58384,6 +58387,72 @@ var CV = function (_Component) {
 
             this.setState({
                 socialMedia: Object.assign({}, socials, _defineProperty({}, key, value))
+            });
+        }
+    }, {
+        key: 'generate',
+        value: function generate(e) {
+            e.preventDefault();
+            var header = this.state.header;
+
+            var _this = this;
+
+            $.ajax({
+                type: 'POST',
+                url: '/cvmake',
+                data: {
+                    header: header
+                },
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                success: function success(response, status, xhr) {
+                    // check for a filename
+                    var filename = "";
+                    var disposition = xhr.getResponseHeader('Content-Disposition');
+                    if (disposition && disposition.indexOf('attachment') !== -1) {
+                        var filenameRegex = /filename[^;=\n]*=((['"]).*?\2|[^;\n]*)/;
+                        var matches = filenameRegex.exec(disposition);
+                        if (matches != null && matches[1]) filename = matches[1].replace(/['"]/g, '');
+                    }
+
+                    var type = xhr.getResponseHeader('Content-Type');
+                    var blob = new Blob([response], { type: type });
+
+                    if (typeof window.navigator.msSaveBlob !== 'undefined') {
+                        // IE workaround for "HTML7007: One or more blob URLs were revoked by closing the blob for which they were created. These URLs will no longer resolve as the data backing the URL has been freed."
+                        window.navigator.msSaveBlob(blob, filename);
+                    } else {
+                        var URL = window.URL || window.webkitURL;
+                        var downloadUrl = URL.createObjectURL(blob);
+
+                        // window.open(downloadUrl);
+
+                        // _this.setState({
+                        //     fileUrl: downloadUrl
+                        // });
+
+                        if (filename) {
+                            // use HTML5 a[download] attribute to specify filename
+                            var a = document.createElement("a");
+                            // safari doesn't support this yet
+                            if (typeof a.download === 'undefined') {
+                                window.location = downloadUrl;
+                            } else {
+                                a.href = downloadUrl;
+                                a.download = filename;
+                                document.body.appendChild(a);
+                                a.click();
+                            }
+                        } else {
+                            window.location = downloadUrl;
+                        }
+
+                        setTimeout(function () {
+                            URL.revokeObjectURL(downloadUrl);
+                        }, 100); // cleanup
+                    }
+                }
             });
         }
     }, {
@@ -58536,7 +58605,7 @@ var PersonalDetails = function PersonalDetails(props) {
         'placeholder': 'Email Address'
     }, {
         'key': 'phone_number',
-        'type': 'number',
+        'type': 'text',
         'placeholder': 'Phone Number'
     }, {
         'key': 'address',
@@ -58709,6 +58778,13 @@ var PersonalDetails = function PersonalDetails(props) {
                         socialMedia.map(function (social, index) {
                             return renderSocialMedia(social.name, social.src);
                         })
+                    ),
+                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                        'button',
+                        { onClick: function onClick(e) {
+                                props.generatePDF(e);
+                            } },
+                        'Generate'
                     )
                 )
             )
