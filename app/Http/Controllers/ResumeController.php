@@ -20,7 +20,10 @@ class ResumeController extends Controller
         $header = $request->input('header');
 
         $cv_header = array(
-            'name' => $header['name']
+            'name' => $header['name'],
+            'email' => $header['email'],
+            'phone_number' => $header['phone_number'],
+            'address' => $header['address']
         );
 
         $cv = new CV_PDF(array(
