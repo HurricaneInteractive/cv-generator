@@ -9624,7 +9624,7 @@ select:-webkit-autofill,
 select:-webkit-autofill:hover,
 select:-webkit-autofill:focus {
   -webkit-text-fill-color: #434C5E;
-  -webkit-box-shadow: 0 0 0px 1000px rgba(0, 211, 162, 0.2) inset;
+  -webkit-box-shadow: 0 0 0px 1000px white inset;
   -webkit-transition: background-color 5000s ease-in-out 0s;
   transition: background-color 5000s ease-in-out 0s;
 }
