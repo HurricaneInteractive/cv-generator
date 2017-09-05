@@ -58314,7 +58314,7 @@ var CV = function (_Component) {
 
         _this2.state = {
             user: window.id,
-            creationStep: 1,
+            creationStep: 0,
             layout: '',
             header: {
                 'name': '',

@@ -14,7 +14,7 @@ class CV extends Component {
 
         this.state = {
             user: window.id,
-            creationStep: 1,
+            creationStep: 0, 
             layout: '',
             header: {
                 'name': '',
