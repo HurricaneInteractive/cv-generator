@@ -42,29 +42,49 @@ class CV_PDF
                 <head>
                     <meta charset='utf-8'>
                     <style>
-                        strong {
-                            color: #d20962;
+                        body {
+                            font-family: 'Open Sans', sans-serif;
                         }
-                        .section-title {
+                        .highlight {
+                            color: #00D3A2;
+                        }
+                        h1 {
+                            font-size: 25px;
+                            margin: 0 0 10px 0;
+                            max-width: 60%;
+                        }
+                        table {
+                            table-layout: fixed;
                             width: 100%;
-                            padding: 15px 20px;
-                            color: white;
-                            background-color: #F54D67;
-                            font-size: 18px;
-                            margin: 0 0 20px 0;
+                        }
+                        td {
+                            padding: 0;
+                            margin: 0;
+                        }
+                        p {
+                            margin: 0;
+                        }
+                        .bt {
+                            border-top: 3px solid #000;
+                            padding-top: 15px;
                         }
                     </style>
                 </head>
                 <body>
-                    <div>
-                        <h2 class="section-title">Details</h2>
-                        <?php 
-                            echo $name;
-                            echo $email;
-                            echo $phone_number;
-                            echo $address;
-                        ?>
-                    </div>
+                    <table>
+                        <tbody>
+                            <tr>
+                                <td style="width: 50%;">
+                                    <h1><?php echo $this->cv_header->getName(); ?></h1>
+                                </td>
+                                <td style="width: 50%;" class="bt">
+                                    <p><?php echo $this->cv_header->getAddress(); ?></p>
+                                    <p class="highlight"><?php echo $this->cv_header->getPhoneNumber(); ?></p>
+                                    <p class="highlight"><?php echo $this->cv_header->getEmail(); ?></p>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </body>
             </html>
         <?php
