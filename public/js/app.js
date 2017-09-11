@@ -58426,7 +58426,7 @@ var CV = function (_Component) {
                         var URL = window.URL || window.webkitURL;
                         var downloadUrl = URL.createObjectURL(blob);
 
-                        // window.open(downloadUrl);
+                        window.open(downloadUrl);
 
                         // _this.setState({
                         //     fileUrl: downloadUrl
@@ -58437,16 +58437,16 @@ var CV = function (_Component) {
                             var a = document.createElement("a");
                             // safari doesn't support this yet
                             if (typeof a.download === 'undefined') {
-                                window.location = downloadUrl;
+                                // window.location = downloadUrl;
                             } else {
                                 a.href = downloadUrl;
                                 a.download = filename;
-                                document.body.appendChild(a);
-                                a.click();
+                                // document.body.appendChild(a);
+                                // a.click();
                             }
                         } else {
-                            window.location = downloadUrl;
-                        }
+                                // window.location = downloadUrl;
+                            }
 
                         setTimeout(function () {
                             URL.revokeObjectURL(downloadUrl);
