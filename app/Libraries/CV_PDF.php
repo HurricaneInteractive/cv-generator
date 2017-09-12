@@ -17,24 +17,16 @@ class CV_PDF
     public $file_binary;
 
     function __construct($cv_info) {
-        // var_dump($cv_info);
-        // die();
 
         $header = $cv_info['header'];
         $this->cv_header = new CV_Header($header);
-
-        // var_dump($this->cv_header);
-        // die();
 
         $this->createPDF();
     }
 
     public function createPDF() {
 
-        $name = '<p><strong>Name: </strong>' . $this->cv_header->getName() . '</p>';
-        $email = '<p><strong>Email: </strong>' . $this->cv_header->getEmail() . '</p>';
-        $phone_number = '<p><strong>Phone Number: </strong>' . $this->cv_header->getPhoneNumber() . '</p>';
-        $address = '<p><strong>Address: </strong>' . $this->cv_header->getAddress() . '</p>';
+        $personal_website = $this->cv_header->getPersonalWebsite();
 
         ob_start();
         ?>
@@ -45,7 +37,7 @@ class CV_PDF
                         body {
                             font-family: 'Open Sans', sans-serif;
                         }
-                        .highlight {
+                        .highlight, a {
                             color: #00D3A2;
                         }
                         h1 {
@@ -57,16 +49,31 @@ class CV_PDF
                             table-layout: fixed;
                             width: 100%;
                         }
+                        tr {
+                            margin-bottom: 30px;
+                        }
                         td {
-                            padding: 0;
+                            padding: 0 0 35px;
                             margin: 0;
                         }
                         p {
                             margin: 0;
+                            line-height: 1;
                         }
                         .bt {
                             border-top: 3px solid #000;
                             padding-top: 15px;
+                        }
+                        .vertt {
+                            vertical-align: top;
+                        }
+                        .sub-heading h3 {
+                            display: inline-block;
+                            border-color: #00D3A2;
+                            font-size: 18px;
+                            padding-top: 10px;
+                            margin: 0;
+                            font-weight: normal;
                         }
                     </style>
                 </head>
@@ -74,13 +81,50 @@ class CV_PDF
                     <table>
                         <tbody>
                             <tr>
-                                <td style="width: 50%;">
+                                <td style="width: 50%;" class="vertt">
                                     <h1><?php echo $this->cv_header->getName(); ?></h1>
                                 </td>
-                                <td style="width: 50%;" class="bt">
+                                <td style="width: 50%;" class="bt vertt">
                                     <p><?php echo $this->cv_header->getAddress(); ?></p>
                                     <p class="highlight"><?php echo $this->cv_header->getPhoneNumber(); ?></p>
                                     <p class="highlight"><?php echo $this->cv_header->getEmail(); ?></p>
+                                    <?php 
+                                        if ($personal_website != null && $personal_website != '') {
+                                            echo '<p class="highlight">' . $personal_website . '</p>';
+                                        }
+                                    ?>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="width: 50%" class="vertt sub-heading">
+                                    <h3 class="bt">Skills</h3>
+                                </td>
+                                <td style="width: 50%" class="bt vertt">
+
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="width: 50%" class="vertt sub-heading">
+                                    <h3 class="bt">Experience</h3>
+                                </td>
+                                <td style="width: 50%" class="bt vertt">
+
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="width: 50%" class="vertt sub-heading">
+                                    <h3 class="bt">Education</h3>
+                                </td>
+                                <td style="width: 50%" class="bt vertt">
+
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="width: 50%" class="vertt sub-heading">
+                                    <h3 class="bt">Awards</h3>
+                                </td>
+                                <td style="width: 50%" class="bt vertt">
+
                                 </td>
                             </tr>
                         </tbody>
