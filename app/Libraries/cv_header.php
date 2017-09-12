@@ -64,6 +64,9 @@ class CV_Header
             if (array_key_exists('address', $header_info)) {
                 $this->setAddress($header_info['address']);
             }
+            if (array_key_exists('personal_website', $header_info)) {
+                $this->setPersonalWebsite($header_info['personal_website']);
+            }
         }
         return $this->getHeaderInformation();
     }
@@ -77,7 +80,8 @@ class CV_Header
             'name' => $this->name,
             'email' => $this->email,
             'phone_number' => $this->phone_number,
-            'address' => $this->address
+            'address' => $this->address,
+            'personal_website' => $this->personal_website
         );
     }
 
@@ -105,7 +109,7 @@ class CV_Header
      *  @param string $phone_number
      *  @return string
      */
-     public function setPhoneNumber($phone_number) {
+    public function setPhoneNumber($phone_number) {
         $this->phone_number = $phone_number;
         return $this;
     }
@@ -114,8 +118,17 @@ class CV_Header
      *  @param string $address
      *  @return string
      */
-     public function setAddress($address) {
+    public function setAddress($address) {
         $this->address = $address;
+        return $this;
+    }
+
+    /**
+     *  @param string $website
+     *  @return string
+     */
+    public function setPersonalWebsite($website) {
+        $this->personal_website = $website;
         return $this;
     }
 
@@ -139,7 +152,7 @@ class CV_Header
      *  Gets the users phone number
      *  @return string
      */
-     public function getPhoneNumber() {
+    public function getPhoneNumber() {
         return $this->phone_number;
     }
 
@@ -147,7 +160,15 @@ class CV_Header
      *  Gets the users address
      *  @return string
      */
-     public function getAddress() {
+    public function getAddress() {
         return $this->address;
+    }
+
+    /**
+     *  Gets the users personal website
+     *  @return string
+     */
+    public function getPersonalWebsite() {
+        return $this->personal_website;
     }
 }

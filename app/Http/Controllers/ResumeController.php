@@ -23,7 +23,8 @@ class ResumeController extends Controller
             'name' => $header['name'],
             'email' => $header['email'],
             'phone_number' => $header['phone_number'],
-            'address' => $header['address']
+            'address' => $header['address'],
+            'personal_website' => $header['personal_website']
         );
 
         $cv = new CV_PDF(array(
