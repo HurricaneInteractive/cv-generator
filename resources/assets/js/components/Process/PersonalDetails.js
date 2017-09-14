@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { ProcessBack } from '../UI';
+import { ProcessBack, ProcessForward } from '../UI';
 
 export const PersonalDetails = (props) => {
 
@@ -167,10 +167,10 @@ export const PersonalDetails = (props) => {
                                 })
                             }
                         </ul>
-                        <button onClick={(e) => { props.generatePDF(e) }}>Generate</button>
                     </div>
                 </div>
             </div>
+            <ProcessForward goForward={() => { changeProcessStep(1) }} />
         </div>
     )
 }
