@@ -50,3 +50,11 @@ export const ProcessBack = (props) => {
         </div>
     )
 }
+
+export const ProcessForward = (props) => {
+    return (
+        <div onClick={() => {props.goForward()}} className="btn process-forward">
+            Next
+        </div>
+    );
+}
