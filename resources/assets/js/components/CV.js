@@ -6,6 +6,7 @@ import { Loading } from './UI';
 
 import { Layout } from './Process/Layout';
 import { PersonalDetails } from './Process/PersonalDetails';
+import { SkillOverview } from './Process/SkillOverview';
 
 class CV extends Component {
 
@@ -54,6 +55,9 @@ class CV extends Component {
                 updateSocial={this.updateSocialMediaInformation}
                 changeStep={this.changeStep}
                 generatePDF={this.generate}
+            />,
+            <SkillOverview
+                changeStep={this.changeStep}
             />
         ];
         return ProcessComponents[this.state.creationStep];
