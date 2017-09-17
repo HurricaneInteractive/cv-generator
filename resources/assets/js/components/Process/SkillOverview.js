@@ -8,6 +8,10 @@ export const SkillOverview = (props) => {
         props.changeStep(inc);
     }
 
+    const changeSkillInfo = (e) => {
+        props.updateSkill(e.target.value);
+    }
+
     return (
         <div className="process">
             <ProcessBack goBack={() => { changeProcessStep(-1) } } />
@@ -19,7 +23,7 @@ export const SkillOverview = (props) => {
                 <div className="instructions">
                     <p>These skills should be relevent to the job you are applying for.</p>
                 </div>
-                <textarea name="skills" value="" />
+                <textarea name="skills" onChange={(e) => {changeSkillInfo(e)}} value={props.currentSkillInformation} />
             </div>
             <ProcessForward goForward={() => { changeProcessStep(1) }} />
         </div>
