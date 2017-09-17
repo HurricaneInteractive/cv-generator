@@ -46,6 +46,13 @@ input {
     }
 }
 
+textarea {
+    width: 100%;
+    resize: none;
+    border: 1px solid rgba($type-light, 0.8);
+    height: 500px;
+}
+
 input:-webkit-autofill,
 input:-webkit-autofill:hover, 
 input:-webkit-autofill:focus
