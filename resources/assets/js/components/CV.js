@@ -29,7 +29,8 @@ class CV extends Component {
                 'twitter': '',
                 'linkedin': '',
                 'google_plus': ''
-            }
+            },
+            skills: ''
         };
 
         this.generate = this.generate.bind(this);
@@ -39,6 +40,7 @@ class CV extends Component {
         this.chooseDocumentLayout = this.chooseDocumentLayout.bind(this);
         this.updateHeaderInformation = this.updateHeaderInformation.bind(this);
         this.updateSocialMediaInformation = this.updateSocialMediaInformation.bind(this);
+        this.updateSkillInformation = this.updateSkillInformation.bind(this);
     }
 
     getProcessStep() {
@@ -57,7 +59,9 @@ class CV extends Component {
                 generatePDF={this.generate}
             />,
             <SkillOverview
+                currentSkillInformation={this.state.skill}
                 changeStep={this.changeStep}
+                updateSkill={this.updateSkillInformation}
             />
         ];
         return ProcessComponents[this.state.creationStep];
@@ -98,9 +102,16 @@ class CV extends Component {
         });
     }
 
+    updateSkillInformation(value) {
+        this.setState({ skill: value });
+    }
+
     generate(e) {
         e.preventDefault();
-        let header = this.state.header;
+        const layout = this.state.layout,
+            header = this.state.header,
+            socialMedia = this.state.socialMedia,
+            skills = this.state.skills;
 
         const _this = this;
 
@@ -108,7 +119,10 @@ class CV extends Component {
             type: 'POST',
             url: '/cvmake',
             data: {
-                header: header
+                layout: layout,
+                header: header,
+                social_media: socialMedia,
+                skills: skills
             },
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
