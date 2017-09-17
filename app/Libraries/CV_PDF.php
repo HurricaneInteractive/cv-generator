@@ -2,10 +2,6 @@
 
 namespace App\Libraries;
 
-// require('vendor/autoload.php');
-// require('options.php');
-// require('cv_header.php');
-
 use Dompdf\Dompdf;
 use Dompdf\Options;
 

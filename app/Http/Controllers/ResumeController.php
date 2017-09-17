@@ -17,7 +17,10 @@ class ResumeController extends Controller
 
     public function makeResume(Request $request) 
     {   
+        $layout = $request->input('layout');
         $header = $request->input('header');
+        $social_mediia = $request->input('social_media');
+        $skills = $request->input('skills');
 
         $cv_header = array(
             'name' => $header['name'],
